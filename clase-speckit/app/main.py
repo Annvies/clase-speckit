@@ -15,7 +15,7 @@ from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
-from app import materias, tareas
+from app import materias, recordatorios, tareas
 from app.colores import PALETA
 from app.db import conectar, crear_esquema
 from app.validacion import (
@@ -176,6 +176,22 @@ def listar_tareas(
     if errores:
         return errores_de_validacion(errores)
     return tareas.listar_tareas(conexion, ahora, materia_id, estado)
+
+
+@app.get("/api/recordatorios")
+def listar_recordatorios(conexion: Conexion, ahora: Ahora, desde: str | None = None):
+    limite, error = recordatorios.validar_desde(desde, ahora)
+    if error is not None or limite is None:
+        return JSONResponse(
+            status_code=422,
+            content={
+                "errores": {
+                    "desde": error or recordatorios.MENSAJE_DESDE_INVALIDO,
+                }
+            },
+        )
+    tareas_registradas = tareas.listar_tareas(conexion, ahora)
+    return recordatorios.listar_recordatorios(tareas_registradas, limite, ahora)
 
 
 @app.post("/api/tareas", status_code=201)
