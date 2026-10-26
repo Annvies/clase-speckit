@@ -1,0 +1,15 @@
+# Entorno y caché de Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+
+# Base de datos local
+datos/
+
+# Sistema y editores
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

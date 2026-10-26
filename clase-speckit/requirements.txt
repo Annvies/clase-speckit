@@ -1,0 +1,8 @@
+# Ejecución
+fastapi==0.162.0
+uvicorn==0.54.0
+
+# Desarrollo y pruebas
+pytest==9.1.1
+httpx==0.28.1
+ruff==0.17.2

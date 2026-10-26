@@ -1,0 +1,393 @@
+/* Estilos base "mobile first": primero celular (desde 360 px), luego computadora. */
+
+:root {
+  --color-fondo: #f5f6f8;
+  --color-superficie: #ffffff;
+  --color-texto: #1f2328;
+  --color-texto-suave: #4b5563;
+  --color-borde: #d0d5dd;
+  --color-primario: #1d4ed8;
+  --color-error: #b91c1c;
+  --color-exito: #15803d;
+  --color-foco: #1d4ed8;
+  /* Marcas de entrega: contraste >= 4.5:1 con texto blanco. */
+  --color-vencida: #b91c1c;
+  --color-urgente: #92400e;
+  --radio: 8px;
+  --espacio: 1rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--color-texto);
+  background: var(--color-fondo);
+  overflow-wrap: anywhere;
+}
+
+h1,
+h2 {
+  line-height: 1.2;
+  margin: 0 0 0.75rem;
+}
+
+h1 {
+  font-size: 1.5rem;
+}
+
+h2 {
+  font-size: 1.2rem;
+}
+
+.encabezado {
+  padding: var(--espacio);
+  background: var(--color-primario);
+  color: #ffffff;
+}
+
+.encabezado__subtitulo {
+  margin: 0;
+}
+
+.contenido {
+  display: grid;
+  gap: var(--espacio);
+  padding: var(--espacio);
+  max-width: 72rem;
+  margin: 0 auto;
+}
+
+.panel {
+  background: var(--color-superficie);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio);
+  padding: var(--espacio);
+  min-width: 0;
+}
+
+/* Foco siempre visible para quien navega con teclado. */
+:focus-visible {
+  outline: 3px solid var(--color-foco);
+  outline-offset: 2px;
+}
+
+input,
+select,
+textarea,
+button {
+  font: inherit;
+  max-width: 100%;
+}
+
+button {
+  min-height: 44px;
+  min-width: 44px;
+  cursor: pointer;
+}
+
+/* Mensajes generales anunciados por la región aria-live. */
+.mensajes {
+  margin: var(--espacio) var(--espacio) 0;
+}
+
+.mensajes:empty {
+  display: none;
+}
+
+.mensajes--info,
+.mensajes--exito,
+.mensajes--error {
+  padding: 0.75rem var(--espacio);
+  border-radius: var(--radio);
+  border-left: 6px solid;
+  background: var(--color-superficie);
+}
+
+.mensajes--exito {
+  border-color: var(--color-exito);
+}
+
+.mensajes--error {
+  border-color: var(--color-error);
+}
+
+.mensajes--info {
+  border-color: var(--color-primario);
+}
+
+.error-campo {
+  margin: 0.25rem 0 0;
+  color: var(--color-error);
+  font-size: 0.9rem;
+}
+
+[aria-invalid="true"] {
+  border-color: var(--color-error);
+}
+
+.contador {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--color-texto-suave);
+}
+
+.oculto {
+  display: none !important;
+}
+
+/* --- Formularios --- */
+
+.formulario {
+  display: grid;
+  gap: var(--espacio);
+  margin-bottom: var(--espacio);
+}
+
+.campo {
+  margin: 0;
+  min-width: 0;
+}
+
+.campo > label,
+.campo > legend {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+fieldset.campo {
+  border: 0;
+  padding: 0;
+}
+
+.campo input[type="text"],
+.campo input[type="date"],
+.campo input[type="time"],
+.campo select,
+.campo textarea {
+  width: 100%;
+  min-height: 44px;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio);
+  background: var(--color-superficie);
+  color: var(--color-texto);
+}
+
+.campo textarea {
+  resize: vertical;
+}
+
+/* Fecha y hora: una debajo de otra en celular, lado a lado si hay espacio. */
+.campos-en-linea {
+  display: grid;
+  gap: var(--espacio);
+  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+}
+
+.boton {
+  padding: 0.5rem 1rem;
+  border-radius: var(--radio);
+  border: 2px solid transparent;
+  font-weight: 600;
+}
+
+.boton:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.boton--primario {
+  background: var(--color-primario);
+  color: #ffffff;
+}
+
+.boton--peligro {
+  background: var(--color-superficie);
+  color: var(--color-error);
+  border-color: var(--color-error);
+}
+
+/* --- Materias --- */
+
+.opciones-color {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+
+.opcion-color {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding: 0 0.5rem;
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio);
+  cursor: pointer;
+}
+
+.opcion-color:has(input:checked) {
+  border: 2px solid var(--color-texto);
+  font-weight: 600;
+}
+
+.opcion-color input {
+  width: 1.25rem;
+  height: 1.25rem;
+  margin: 0;
+}
+
+.muestra-color {
+  display: inline-block;
+  flex: none;
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 50%;
+}
+
+.estado-vacio {
+  color: var(--color-texto-suave);
+  margin: 0;
+}
+
+.lista-materias {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.materia {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio);
+}
+
+.materia__nombre {
+  flex: 1;
+  min-width: 0;
+}
+
+/* --- Filtros --- */
+
+.formulario--filtros {
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  margin-bottom: 0;
+}
+
+/* --- Tareas --- */
+
+.lista-tareas {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.tarea {
+  display: grid;
+  gap: 0.25rem;
+  padding: 0.75rem var(--espacio);
+  border: 1px solid var(--color-borde);
+  border-left: 6px solid var(--color-borde);
+  border-radius: var(--radio);
+}
+
+.tarea--vencida {
+  border-left-color: var(--color-vencida);
+  background: #fef2f2;
+}
+
+.tarea--urgente {
+  border-left-color: var(--color-urgente);
+}
+
+.tarea__cabecera {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.tarea__titulo {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.tarea__dato,
+.tarea__descripcion {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.tarea__descripcion {
+  color: var(--color-texto-suave);
+  white-space: pre-line;
+}
+
+.tarea__completar {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  width: fit-content;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.tarea__completar input {
+  width: 1.25rem;
+  height: 1.25rem;
+  margin: 0;
+}
+
+.tarea--completada .tarea__titulo {
+  text-decoration: line-through;
+  color: var(--color-texto-suave);
+}
+
+.insignia {
+  display: inline-block;
+  padding: 0.1rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.insignia--vencida {
+  background: var(--color-vencida);
+}
+
+.insignia--urgente {
+  background: var(--color-urgente);
+}
+
+@media (min-width: 768px) {
+  .contenido {
+    grid-template-columns: minmax(16rem, 1fr) 2fr;
+    align-items: start;
+  }
+
+  .panel--listado {
+    grid-column: 2;
+    grid-row: 1 / span 3;
+  }
+}

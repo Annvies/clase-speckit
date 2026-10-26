@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Organizador de Tareas UPB</title>
+  <link rel="stylesheet" href="/static/estilos.css">
+  <script src="/static/app.js" defer></script>
+</head>
+<body>
+  <header class="encabezado">
+    <h1>Organizador de Tareas</h1>
+    <p class="encabezado__subtitulo">Tus materias y entregas en un solo lugar.</p>
+  </header>
+
+  <div id="mensajes" class="mensajes" role="status" aria-live="polite"></div>
+
+  <!-- novalidate en los formularios: los mensajes de error los da el servidor, en español y
+       junto a cada campo. Los atributos required/maxlength siguen ayudando a prevenir errores. -->
+  <main class="contenido">
+    <section id="seccion-materias" class="panel" aria-labelledby="titulo-materias">
+      <h2 id="titulo-materias">Mis materias</h2>
+
+      <form id="formulario-materia" class="formulario" novalidate>
+        <div class="campo">
+          <label for="materia-nombre">Nombre de la materia</label>
+          <input id="materia-nombre" name="nombre" type="text" maxlength="50" required autocomplete="off">
+        </div>
+
+        <fieldset class="campo">
+          <legend>Color</legend>
+          <div id="opciones-color" class="opciones-color"></div>
+        </fieldset>
+
+        <button type="submit" class="boton boton--primario">Registrar materia</button>
+      </form>
+
+      <p id="materias-vacio" class="estado-vacio">
+        Aún no tienes materias. Registra la primera para empezar a organizar tus tareas.
+      </p>
+      <ul id="lista-materias" class="lista-materias"></ul>
+    </section>
+
+    <section id="seccion-nueva-tarea" class="panel" aria-labelledby="titulo-nueva-tarea">
+      <h2 id="titulo-nueva-tarea">Nueva tarea</h2>
+
+      <p id="aviso-sin-materias" class="estado-vacio">
+        Primero registra una materia para poder crear tareas.
+      </p>
+
+      <form id="formulario-tarea" class="formulario" novalidate>
+        <div class="campo">
+          <label for="tarea-materia">Materia</label>
+          <select id="tarea-materia" name="materia_id" required></select>
+        </div>
+
+        <div class="campo">
+          <label for="tarea-titulo">Título</label>
+          <input id="tarea-titulo" name="titulo" type="text" maxlength="100" required autocomplete="off">
+        </div>
+
+        <div class="campo">
+          <label for="tarea-descripcion">Descripción (opcional)</label>
+          <textarea id="tarea-descripcion" name="descripcion" maxlength="500" rows="3"></textarea>
+        </div>
+
+        <div class="campos-en-linea">
+          <div class="campo">
+            <label for="tarea-fecha">Fecha de entrega</label>
+            <input id="tarea-fecha" name="fecha_entrega" type="date" required>
+          </div>
+          <div class="campo">
+            <label for="tarea-hora">Hora (opcional, 23:59 si la dejas vacía)</label>
+            <input id="tarea-hora" name="hora_entrega" type="time">
+          </div>
+        </div>
+
+        <button type="submit" class="boton boton--primario">Crear tarea</button>
+      </form>
+    </section>
+
+    <section id="seccion-filtros" class="panel" aria-labelledby="titulo-filtros">
+      <h2 id="titulo-filtros">Filtrar tareas</h2>
+
+      <form id="formulario-filtros" class="formulario formulario--filtros">
+        <div class="campo">
+          <label for="filtro-materia">Materia</label>
+          <select id="filtro-materia" name="materia_id">
+            <option value="">Todas</option>
+          </select>
+        </div>
+        <div class="campo">
+          <label for="filtro-estado">Estado</label>
+          <select id="filtro-estado" name="estado">
+            <option value="todas">Todas</option>
+            <option value="pendientes">Pendientes</option>
+            <option value="completadas">Completadas</option>
+          </select>
+        </div>
+      </form>
+    </section>
+
+    <section id="seccion-listado" class="panel panel--listado" aria-labelledby="titulo-listado">
+      <h2 id="titulo-listado" tabindex="-1">Mis tareas</h2>
+
+      <p id="tareas-vacio" class="estado-vacio"></p>
+      <ul id="lista-tareas" class="lista-tareas"></ul>
+    </section>
+  </main>
+</body>
+</html>
