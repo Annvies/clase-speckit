@@ -64,6 +64,9 @@ verificando que el estudiante recibe un resultado y una orientación comprensibl
    la configuración del navegador o dispositivo.
 3. **Dado** que el permiso está concedido, **cuando** el estudiante consulta el estado de los
    recordatorios, **entonces** el sistema indica que están habilitados.
+4. **Dado** que el navegador no admite notificaciones o la página no está en un contexto seguro,
+   **cuando** el estudiante intenta activar los recordatorios, **entonces** se le explica la
+   limitación y el sistema no indica que estén habilitados.
 
 ### Casos Límite
 
@@ -102,6 +105,8 @@ verificando que el estudiante recibe un resultado y una orientación comprensibl
   poder comprenderse sin conocimientos técnicos.
 - **FR-010**: El sistema DEBE entregar las notificaciones solo mientras la aplicación esté
   abierta y NO DEBE enviar avisos atrasados cuando el estudiante vuelva a abrirla.
+- **FR-011**: Si el navegador no admite notificaciones o la página no está en un contexto seguro,
+  el sistema DEBE explicar la limitación y NO DEBE indicar que los recordatorios están habilitados.
 
 ### Entidades Clave
 
@@ -135,5 +140,7 @@ verificando que el estudiante recibe un resultado y una orientación comprensibl
   esta puede recibir el aviso originalmente programado.
 - Los recordatorios se entregan únicamente si la aplicación está abierta en el momento
   programado; no se requiere su entrega en segundo plano.
+- Las notificaciones nativas requieren un navegador compatible y un contexto seguro; se asume
+  acceso mediante localhost o un origen seguro.
 - La funcionalidad aprovecha las tareas, estados y borrado en cascada ya definidos en
   `specs/001-organizador-tareas/spec.md`.
