@@ -24,6 +24,7 @@ de confirmación de borrado.
 **Orden del listado de materias**: alfabético por nombre, sin distinguir mayúsculas ni tildes (se ordena en Python; ver [research.md](./research.md#13-decisiones-añadidas-durante-la-implementación)).
 
 ## Entidad: Tarea (tabla `tareas`)
+add my task
 
 | Campo | Tipo SQLite | Reglas |
 |-------|-------------|--------|
