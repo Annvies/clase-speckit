@@ -15,6 +15,10 @@ entrega, vea cuáles están vencidas o son urgentes, las marque como completadas
   hoy, mañana o pasado mañana. Las marcas se actualizan cada minuto.
 - Marcar o desmarcar tareas como completadas.
 - Filtrar por materia y por estado (pendientes o completadas).
+- Activar recordatorios de entregas pendientes: el navegador solicita permiso y muestra un
+  aviso exactamente 24 horas antes de la entrega. Los avisos solo se reciben mientras esta
+  aplicación permanece abierta y el navegador permite notificaciones; no se envían avisos
+  atrasados al volver a abrirla.
 
 ## Requisitos
 
@@ -55,3 +59,4 @@ ruff check .           # lint
 
 - Constitución del proyecto: [.specify/memory/constitution.md](.specify/memory/constitution.md)
 - Especificación, plan y tareas: [specs/001-organizador-tareas/](specs/001-organizador-tareas/)
+- Recordatorios de entrega: [specs/002-recordatorios-entrega/](specs/002-recordatorios-entrega/)
