@@ -33,6 +33,18 @@ Nota de método: Edge sin interfaz impone un ancho mínimo de ventana de 496 px,
 vista de 360 px se capturó cargando la aplicación dentro de un `iframe` de 360 px de ancho,
 que crea su propio viewport.
 
+## 2026-10-26 — Recorrido en navegador (Playwright)
+
+- A 360 px: no hay desplazamiento horizontal (`scrollWidth` menor que el viewport); los
+  formularios se muestran en una columna.
+- A 1280 px: no hay desplazamiento horizontal; el listado ocupa la columna derecha y los
+  formularios la izquierda.
+- Con teclado: se registró la materia "Luciana", se creó una tarea, se marcó como completada
+  con Espacio y se verificó que el foco permaneció en la casilla redibujada.
+- Los 15 controles de formulario tienen etiqueta accesible asociada y el foco visible está
+  definido por `:focus-visible`.
+- Se agregó un favicon local para evitar solicitudes 404 durante la auditoría del navegador.
+
 ## Revisión de código de comportamientos de interfaz
 
 - Confirmación de borrado: `window.confirm()` con la cantidad de tareas; al cancelar no se
@@ -46,11 +58,12 @@ que crea su propio viewport.
 
 ## Pendiente de verificación por una persona
 
-Requiere interacción real con el navegador; no pudo hacerse en esta sesión:
+Queda pendiente lo que requiere una instalación local de Chrome o un dispositivo real:
 
 - [ ] Recorrido completo solo con teclado (Tab, Shift+Tab, Enter, Espacio) en las cinco
-      historias.
+      historias; en esta sesión se comprobó el flujo principal de registrar, crear y completar.
 - [ ] Cancelar y confirmar el borrado de una materia con tareas (escenario 9 de quickstart).
 - [ ] Pegar un texto de más de 100 caracteres en el título (escenario 10) y ver el aviso.
-- [ ] Auditoría de accesibilidad de Lighthouse sin errores de contraste ni etiquetas.
+- [ ] Auditoría de accesibilidad de Lighthouse sin errores de contraste ni etiquetas (la CLI no
+      encontró una instalación local de Chrome).
 - [ ] Prueba en un celular real en la misma red Wi-Fi.
